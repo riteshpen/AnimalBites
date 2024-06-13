@@ -8,7 +8,7 @@ If I'm completely wrong somewhere or if my findings are unclear, don't hesitate 
 
 This dataset was selected [here](https://www.kaggle.com/code/mmujtabah/animal-bites-analysis/input)
 
-The purpose of this EDA is to find insights that will serve us later in another notebook for **Data cleaning, preparation, modeling** which will ultimately be used in a machine-learning algorithm. We will proceed as follow:
+The purpose of this EDA is to find insights that will serve us later in another notebook for **Data cleaning, Preparation, Modeling** which will ultimately be used in a machine-learning algorithm. We will proceed as follow:
 
 <img width="660" alt="Screenshot 2024-06-13 at 8 43 06 AM" src="https://github.com/rp37458/AnimalBites/assets/147536351/39bb75c6-5611-4b3d-9235-bc78c6ce5641">
 
