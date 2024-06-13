@@ -34,7 +34,16 @@ Push to the branch (git push origin feature/improvement).
 Create a new Pull Request.
 
 ## Technologies Used
-Python Libraries Pandas, Matplotlib, Seaborn, ttest_ind, anova_lm, ols
+Python Libraries:
+- Pandas
+- Matplotlib
+- Seaborn
+- ttest_ind
+  - scipy.stats
+- anova_lm 
+  - statsmodels.stats.anova 
+- ols
+  - statsmodels.formula.api
 
 
 
