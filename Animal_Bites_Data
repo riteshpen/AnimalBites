@@ -17,7 +17,7 @@ df.describe()
 
 """
 Fill in any missing na values. For the numeric data types (vaccination_yrs) fill it with the median of vaccination_yrs
-and for the categorical data types fill it in with 'Unknown'
+and for the categorical data types fill it in with 'Unknown' --- DATA Cleaning
 
 """
 
@@ -39,6 +39,10 @@ for col in date_columns:
     df[col] = pd.to_datetime(df[col], errors='coerce')
 for col in categorical_columns:
     df[col].fillna('Unknown', inplace=True)
+
+"""
+Data Modeling for relationships Species, Gender, Vaccination Time to see if they are statistically significant 
+"""
 
 
 # Distribution of Species
@@ -75,12 +79,8 @@ plt.ylabel('Sum of Vaccination Years')
 plt.yscale('log')
 plt.show()
 
-# Correlation matrix
-correlation_matrix = df.corr()
-plt.figure(figsize=(10, 8))
-sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
-plt.title('Correlation Matrix')
-plt.show()
+
+
 
 """
 Inferential Statistics: T-test Hypothesis Testing and ANOVA Hypothesis Testing
