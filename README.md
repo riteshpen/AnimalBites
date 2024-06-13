@@ -10,7 +10,7 @@ This dataset was selected [here](https://www.kaggle.com/code/mmujtabah/animal-bi
 
 The purpose of this EDA is to find insights that will serve us later in another notebook for Data cleaning/preparation/transformation which will ultimately be used in a machine-learning algorithm. We will proceed as follow:
 
-![Machine Learning Algorithm Steps](https://github.com/rp37458/AnimalBites/blob/main/img.pdf)
+![](https://github.com/rp37458/AnimalBites/blob/main/img.pdf)
 
 In this data analysis, I will not only be visualizing data through statistical modeling and cleaning up data. 
 
