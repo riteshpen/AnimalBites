@@ -12,6 +12,6 @@ The purpose of this EDA is to find insights that will serve us later in another 
 
 which will ultimately be used in a machine-learning algorithm. We will proceed as follow:
 
-![Image](https://www.kaggle.com/code/mmujtabah/animal-bites-analysis/input)
+![alt text](https://github.com/[rp37458]/[AnimalBites]/blob/[branch]/image.jpg?raw=true)
 
 
