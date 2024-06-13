@@ -1,0 +1,115 @@
+"""
+For preparations import these libraries into Python and load the files needed for our EDA
+"""
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy.stats import ttest_ind
+from statsmodels.formula.api import ols
+from statsmodels.stats.anova import anova_lm
+
+df = pd.read_csv('Health_AnimalBites.csv')
+df.head()
+df.info()
+df.describe()
+
+"""
+Fill in any missing na values. For the numeric data types (vaccination_yrs) fill it with the median of vaccination_yrs
+and for the categorical data types fill it in with 'Unknown'
+
+"""
+
+
+df['vaccination_yrs'].fillna(df['vaccination_yrs'].median(), inplace=True)
+
+categorical_columns = [
+    'SpeciesIDDesc', 'BreedIDDesc', 'GenderIDDesc', 'color', 
+    'victim_zip', 'AdvIssuedYNDesc', 'WhereBittenIDDesc', 
+    'DispositionIDDesc', 'ResultsIDDesc'
+]
+
+date_columns = [
+    'bite_date', 'vaccination_date', 'quarantine_date', 
+    'head_sent_date', 'release_date'
+]
+
+for col in date_columns:
+    df[col] = pd.to_datetime(df[col], errors='coerce')
+for col in categorical_columns:
+    df[col].fillna('Unknown', inplace=True)
+
+
+# Distribution of Species
+
+plt.figure(figsize=(10, 6))
+sns.countplot(data=df, x='SpeciesIDDesc')
+plt.yscale('log') # Used to make the smaller data more readable
+plt.xticks(rotation=90)
+plt.title('Distribution of Species')
+plt.show()
+
+# Distribution of Vaccination Years
+plt.figure(figsize=(10, 6))
+sns.histplot(df['vaccination_yrs'], bins=30)
+plt.title('Distribution of Vaccination Years')
+plt.show()
+
+# Relationship between Species and Gender
+
+plt.figure(figsize=(10, 6))
+sns.countplot(data=df, x='SpeciesIDDesc',hue=df['GenderIDDesc'])
+plt.xticks(rotation=90)
+plt.yscale('log')
+plt.title('Species vs. Gender')
+plt.show()
+
+# Relationship between Species and Vaccination Time
+df_plot = df.dropna(subset=['vaccination_yrs'])
+plt.figure(figsize=(10, 6))
+sns.barplot(data=df_plot, x='SpeciesIDDesc', y='vaccination_yrs', estimator=sum, ci=None)
+plt.title('Sum of Vaccination Time Among Different Species')
+plt.xlabel('Species')
+plt.ylabel('Sum of Vaccination Years')
+plt.yscale('log')
+plt.show()
+
+# Correlation matrix
+correlation_matrix = df.corr()
+plt.figure(figsize=(10, 8))
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
+plt.title('Correlation Matrix')
+plt.show()
+
+"""
+Inferential Statistics: T-test Hypothesis Testing and ANOVA Hypothesis Testing
+"""
+
+# Subset data by species (e.g., comparing two species)
+species_a = df[df['SpeciesIDDesc'] == 'DOG']['vaccination_yrs'].dropna()
+species_b = df[df['SpeciesIDDesc'] == 'CAT']['vaccination_yrs'].dropna()
+
+# Perform t-test
+t_stat, p_val = ttest_ind(species_a, species_b)
+print(f"T-statistic: {t_stat}, P-value: {p_val}")
+
+# Interpretation
+if p_val < 0.05:
+    print("Significant difference in vaccination years between DOG and CAT.")
+else:
+    print("No significant difference in vaccination years between DOG and CAT.")
+
+
+model = ols('vaccination_yrs ~ C(SpeciesIDDesc)', data=df).fit()
+anova_result = anova_lm(model)
+print(anova_result)
+
+f_statistic = anova_result['F'][0]
+p_value = anova_result['PR(>F)'][0]
+
+if p_value < 0.05:
+    print(f"Reject null hypothesis: There is a significant difference in vaccination years among different species (F-statistic = {f_statistic}, p-value = {p_value})")
+else:
+    print(f"Fail to reject null hypothesis: There is no significant difference in vaccination years among different species (F-statistic = {f_statistic}, p-value = {p_value})")
+
