@@ -1,4 +1,4 @@
-# Detailed exploratory data analysis with python 
+# Detailed Exploratory Data Analysis with Python 
 
 This is the very first inferential statistics explanatory data analysis I have done on my own. 
 
