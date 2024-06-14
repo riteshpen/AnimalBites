@@ -46,9 +46,9 @@ Create a new Pull Request.
   - statsmodels.formula.api
 
 ## Tools used
-Juypter Notebook
-VSCode
-CHATGPT
+- Juypter Notebook
+- VSCode
+- CHATGPT
 
 
 
