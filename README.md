@@ -33,7 +33,7 @@ Push to the branch (git push origin feature/improvement).
 
 Create a new Pull Request.
 
-## Technologies Used
+## Python Libraries Used
 **Python** **Libraries**:
 - Pandas
 - Matplotlib
@@ -44,6 +44,11 @@ Create a new Pull Request.
   - statsmodels.stats.anova 
 - ols
   - statsmodels.formula.api
+
+## Tools used
+Juypter Notebook
+VSCode
+CHATGPT
 
 
 
